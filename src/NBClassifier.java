@@ -6,7 +6,7 @@ public class NBClassifier {
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader("Data/train.data"));
-		
+		System.out.println(br.readLine());
 		br.close();
 	}
 }
