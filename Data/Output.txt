@@ -1,0 +1,14 @@
+Without removing stopwords
+Accuracy=0.8136
+Precision=0.75032 Recall=0.8590401172375893 F-Score=0.8010077717994706
+After removing stopwords
+Accuracy=0.82628
+Precision=0.77248 Recall=0.8656207978484984 F-Score=0.8164024519129148
+
+Binary Naive Bayes Classification:
+Without removing stopwords
+Accuracy=0.82992
+Precision=0.77304 Recall=0.8722693627008485 F-Score=0.8196623971498854
+After removing stopwords
+Accuracy=0.83796
+Precision=0.79184 Recall=0.8723010487353485 F-Score=0.8301253826477124
