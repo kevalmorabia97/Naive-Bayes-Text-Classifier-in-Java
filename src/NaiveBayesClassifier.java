@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 
 public class NaiveBayesClassifier {
 	
-	public static void NBClassifier(String trainFile, String testFile, String vocabFile, String stopwordFile, boolean removeStopwords) throws IOException{
+	public static void NBClassifier(boolean binaryNB, String trainFile, String testFile, String vocabFile, String stopwordFile, boolean removeStopwords) throws IOException{
 		String s;
 		BufferedReader br;
 		HashSet<Integer> stopwords = new HashSet<>();
@@ -39,6 +39,7 @@ public class NaiveBayesClassifier {
 				while(st.hasMoreTokens()) {
 					int word = Integer.parseInt(st.nextToken());
 					int freq = Integer.parseInt(st.nextToken());
+					freq = binaryNB ? 1 : freq;
 					if(stopwords.contains(word))	continue;
 					countPos[word]+=freq;
 					totalWordsInPosReviews+=freq;
@@ -48,6 +49,7 @@ public class NaiveBayesClassifier {
 				while(st.hasMoreTokens()) {
 					int word = Integer.parseInt(st.nextToken());
 					int freq = Integer.parseInt(st.nextToken());
+					freq = binaryNB ? 1 : freq;
 					if(stopwords.contains(word))	continue;
 					countNeg[word]+=freq;
 					totalWordsInNegReviews+=freq;
@@ -68,6 +70,7 @@ public class NaiveBayesClassifier {
 			while(st.hasMoreTokens()) {
 				int word = Integer.parseInt(st.nextToken());
 				int freq = Integer.parseInt(st.nextToken());
+				freq = binaryNB ? 1 : freq;
 				if(stopwords.contains(word))	continue;
 				probOfPos+=freq*Math.log((countPos[word]+1)/(totalWordsInPosReviews+distinctWords+0.0));
 				probOfNeg+=freq*Math.log((countNeg[word]+1)/(totalWordsInNegReviews+distinctWords+0.0));
@@ -86,14 +89,20 @@ public class NaiveBayesClassifier {
 		double precision = truePositive/(truePositive+falsePositive+0.0);
 		double recall = truePositive/(truePositive+falseNegative+0.0);
 		double fscore = 2*precision*recall/(precision+recall);
-		System.out.println("Accuracy="+accuracy+"\nPrecision="+precision+" Recall="+recall+" F-Score="+fscore+"\n");
+		System.out.println("Accuracy="+accuracy+"\nPrecision="+precision+" Recall="+recall+" F-Score="+fscore);
 	}
 	
 	public static void main(String[] args) throws IOException {
 		String trainFile = "Data/Train.data", testFile = "Data/Test.data", vocabFile = "Data/Vocab.data", stopwordFile = "Data/stopwords.txt";
 		System.out.println("Without removing stopwords");
-		NBClassifier(trainFile, testFile, vocabFile, stopwordFile, false);
+		NBClassifier(false, trainFile, testFile, vocabFile, stopwordFile, false);
 		System.out.println("After removing stopwords");
-		NBClassifier(trainFile, testFile, vocabFile, stopwordFile, true);
+		NBClassifier(false, trainFile, testFile, vocabFile, stopwordFile, true);
+		
+		System.out.println("\nBinary Naive Bayes Classification:");
+		System.out.println("Without removing stopwords");
+		NBClassifier(true, trainFile, testFile, vocabFile, stopwordFile, false);
+		System.out.println("After removing stopwords");
+		NBClassifier(true, trainFile, testFile, vocabFile, stopwordFile, true);
 	}
 }
