@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 public class NaiveBayesClassifier {
 	
 	public static void NBClassifier(boolean binaryNB, String trainFile, String testFile, String vocabFile, String stopwordFile, boolean removeStopwords) throws IOException{
+		long time = System.currentTimeMillis();
 		String s;
 		BufferedReader br;
 		HashSet<Integer> stopwords = new HashSet<>();
@@ -90,6 +91,8 @@ public class NaiveBayesClassifier {
 		double recall = truePositive/(truePositive+falseNegative+0.0);
 		double fscore = 2*precision*recall/(precision+recall);
 		System.out.println("Accuracy="+accuracy+"\nPrecision="+precision+" Recall="+recall+" F-Score="+fscore);
+		time = System.currentTimeMillis()-time;
+		System.out.println("Time:"+time/1000d+"s");
 	}
 	
 	public static void main(String[] args) throws IOException {
