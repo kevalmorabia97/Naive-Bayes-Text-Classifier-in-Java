@@ -8,3 +8,28 @@ Naive Bayes methods are a set of supervised learning algorithms based on applyin
 
 <br>Reference: Chapter6 - Machine Learning by Tom M. Mitchell 
 ![Image](https://mrcheerful.000webhostapp.com/GitHub/naive-bayes.PNG)
+
+<hr>
+
+- **Steps to find the sentiment of any text:**
+
+The code I wrote only gives the sentiment as positive(1) or negative(0)
+<br>You cant know how much pos or neg
+
+To get a sentiment, write each text on a line with first integer as the actual sentiment
+(for testing the accuracy but you can keep it anything if you want to predict)
+after that each word is of the form: <Index_in_vocab:freq> seperated by space
+
+For example
+10 0:2 1:1 3:1 4:1 
+Meaning the sentiment is 10 (positive) and contains
+The 2 times
+And 1 time
+Of 1 time
+To 1 time
+(See Vocab.txt file)
+Put this content in test.data file
+Again, the value 10 is for test so if you know a sentiment you can verify that the classification should be 1 (pos)
+
+To get the predicted value, you can add a print statement after line 80 in the code and comment out the code from line 81 to 95
+which is just for finding the accuracy of prediction on test data
