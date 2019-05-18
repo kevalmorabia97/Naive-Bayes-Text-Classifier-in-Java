@@ -23,11 +23,11 @@ after that each word is of the form: <Index_in_vocab:freq> seperated by space
 For example
 10 0:2 1:1 3:1 4:1 
 Meaning the sentiment is 10 (positive) and contains
-The 2 times
-And 1 time
-Of 1 time
-To 1 time
-(See Vocab.txt file)
+<br>_The_ 2 times
+<br>_And_ 1 time
+<br>_Of_ 1 time
+<br>_To_ 1 time
+<br>(See Vocab.txt file)
 Put this content in test.data file
 Again, the value 10 is for test so if you know a sentiment you can verify that the classification should be 1 (pos)
 
